@@ -142,8 +142,18 @@ namespace RenderPower
         private void Form1_DragDrop(object sender, DragEventArgs e)
         {
             string[] files = (string[])e.Data.GetData(DataFormats.FileDrop, false);
-            //ここでは単純にファイルをリストアップするだけ
-            GetCommand(files);
+            if(files.Length>0)
+            {
+                foreach(string p in files)
+                {
+                    if (Directory.Exists(p)==true)
+                    {
+                        WatchFolder = p;
+                        break;
+                    }
+                }
+            }
+
         }
         //-------------------------------------------------------------
         /// <summary>

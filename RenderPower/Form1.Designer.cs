@@ -44,10 +44,11 @@
             this.BtnWatchStart = new System.Windows.Forms.Button();
             this.BtnWatchStop = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
             this.CbIsStartup = new System.Windows.Forms.CheckBox();
-            this.label2 = new System.Windows.Forms.Label();
             this.BtnStopOrder = new System.Windows.Forms.Button();
+            this.LbList = new System.Windows.Forms.ListBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -59,7 +60,7 @@
             this.helpToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(527, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(725, 24);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -124,9 +125,9 @@
             // 
             // statusStrip1
             // 
-            this.statusStrip1.Location = new System.Drawing.Point(0, 483);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 556);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(527, 22);
+            this.statusStrip1.Size = new System.Drawing.Size(725, 22);
             this.statusStrip1.TabIndex = 1;
             this.statusStrip1.Text = "statusStrip1";
             // 
@@ -137,9 +138,9 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.listBox1.FormattingEnabled = true;
             this.listBox1.ItemHeight = 12;
-            this.listBox1.Location = new System.Drawing.Point(12, 290);
+            this.listBox1.Location = new System.Drawing.Point(293, 197);
             this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(507, 184);
+            this.listBox1.Size = new System.Drawing.Size(420, 340);
             this.listBox1.TabIndex = 2;
             // 
             // BtnSelectWatchFolder
@@ -158,13 +159,13 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.TbWatchFolder.Location = new System.Drawing.Point(23, 66);
             this.TbWatchFolder.Name = "TbWatchFolder";
-            this.TbWatchFolder.Size = new System.Drawing.Size(496, 19);
+            this.TbWatchFolder.Size = new System.Drawing.Size(694, 19);
             this.TbWatchFolder.TabIndex = 4;
             // 
             // BtnWatchStart
             // 
             this.BtnWatchStart.Font = new System.Drawing.Font("MS UI Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.BtnWatchStart.Location = new System.Drawing.Point(23, 105);
+            this.BtnWatchStart.Location = new System.Drawing.Point(34, 91);
             this.BtnWatchStart.Name = "BtnWatchStart";
             this.BtnWatchStart.Size = new System.Drawing.Size(121, 37);
             this.BtnWatchStart.TabIndex = 5;
@@ -174,73 +175,86 @@
             // BtnWatchStop
             // 
             this.BtnWatchStop.Font = new System.Drawing.Font("MS UI Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.BtnWatchStop.Location = new System.Drawing.Point(160, 105);
+            this.BtnWatchStop.Location = new System.Drawing.Point(161, 91);
             this.BtnWatchStop.Name = "BtnWatchStop";
-            this.BtnWatchStop.Size = new System.Drawing.Size(121, 37);
+            this.BtnWatchStop.Size = new System.Drawing.Size(206, 37);
             this.BtnWatchStop.TabIndex = 6;
-            this.BtnWatchStop.Text = "Watch Stop";
+            this.BtnWatchStop.Text = "Stop Watch  and Render ";
             this.BtnWatchStop.UseVisualStyleBackColor = true;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("MS UI Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.label1.Location = new System.Drawing.Point(20, 266);
+            this.label1.Location = new System.Drawing.Point(300, 176);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(67, 16);
             this.label1.TabIndex = 7;
             this.label1.Text = "Progress";
             // 
-            // textBox1
-            // 
-            this.textBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox1.Location = new System.Drawing.Point(17, 244);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(502, 19);
-            this.textBox1.TabIndex = 8;
-            // 
             // CbIsStartup
             // 
             this.CbIsStartup.AutoSize = true;
-            this.CbIsStartup.Location = new System.Drawing.Point(298, 126);
+            this.CbIsStartup.Location = new System.Drawing.Point(34, 134);
             this.CbIsStartup.Name = "CbIsStartup";
             this.CbIsStartup.Size = new System.Drawing.Size(187, 16);
             this.CbIsStartup.TabIndex = 9;
             this.CbIsStartup.Text = "Go to Watching mode at startup";
             this.CbIsStartup.UseVisualStyleBackColor = true;
             // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("MS UI Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.label2.Location = new System.Drawing.Point(20, 218);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(163, 16);
-            this.label2.TabIndex = 10;
-            this.label2.Text = "Target Render Info File";
-            // 
             // BtnStopOrder
             // 
-            this.BtnStopOrder.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.BtnStopOrder.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.BtnStopOrder.Font = new System.Drawing.Font("MS UI Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.BtnStopOrder.Location = new System.Drawing.Point(368, 182);
+            this.BtnStopOrder.Location = new System.Drawing.Point(177, 508);
             this.BtnStopOrder.Name = "BtnStopOrder";
-            this.BtnStopOrder.Size = new System.Drawing.Size(147, 56);
+            this.BtnStopOrder.Size = new System.Drawing.Size(110, 25);
             this.BtnStopOrder.TabIndex = 11;
             this.BtnStopOrder.Text = "Stop Order";
             this.BtnStopOrder.UseVisualStyleBackColor = true;
+            // 
+            // LbList
+            // 
+            this.LbList.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.LbList.FormattingEnabled = true;
+            this.LbList.ItemHeight = 12;
+            this.LbList.Location = new System.Drawing.Point(23, 198);
+            this.LbList.Name = "LbList";
+            this.LbList.Size = new System.Drawing.Size(264, 304);
+            this.LbList.TabIndex = 12;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(22, 181);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(93, 12);
+            this.label3.TabIndex = 13;
+            this.label3.Text = "Render Info Files";
+            // 
+            // button1
+            // 
+            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.button1.Font = new System.Drawing.Font("MS UI Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.button1.Location = new System.Drawing.Point(177, 168);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(110, 25);
+            this.button1.TabIndex = 14;
+            this.button1.Text = "Refresh";
+            this.button1.UseVisualStyleBackColor = true;
             // 
             // Form1
             // 
             this.AllowDrop = true;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(527, 505);
+            this.ClientSize = new System.Drawing.Size(725, 578);
+            this.Controls.Add(this.button1);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.LbList);
             this.Controls.Add(this.BtnStopOrder);
-            this.Controls.Add(this.label2);
             this.Controls.Add(this.CbIsStartup);
-            this.Controls.Add(this.textBox1);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.BtnWatchStop);
             this.Controls.Add(this.BtnWatchStart);
@@ -279,12 +293,13 @@
         private System.Windows.Forms.Button BtnWatchStart;
         private System.Windows.Forms.Button BtnWatchStop;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.CheckBox CbIsStartup;
-        private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button BtnStopOrder;
         private System.Windows.Forms.ToolStripMenuItem watchStartToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem watchStopToolStripMenuItem;
+        private System.Windows.Forms.ListBox LbList;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Button button1;
     }
 }
 
