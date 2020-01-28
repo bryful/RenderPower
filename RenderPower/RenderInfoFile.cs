@@ -9,6 +9,11 @@ namespace RenderPower
 {
     public class RenderInfoFile
     {
+        public static readonly string RifExt = ".rif";
+        public static readonly string RifListExt = ".rifList";
+        public static readonly string StopOrderExt = ".rifStopOrder";
+
+
         private string m_AerenderPath = "";
         public string AerenderPath
         {
@@ -29,10 +34,10 @@ namespace RenderPower
         {
             get { return m_StartFrame; }
         }
-        private int m_LastFrame = 1;
-        public int LastFrame
+        private int m_EndFrame = 1;
+        public int EndFrame
         {
-            get { return m_LastFrame; }
+            get { return m_EndFrame; }
         }        
         // ************************************************************
         public RenderInfoFile()
@@ -46,7 +51,7 @@ namespace RenderPower
             m_AepPath = "";
             m_BlockCount = 50;
             m_StartFrame = 0;
-            m_LastFrame = 0;
+            m_EndFrame = 0;
         }
         // ************************************************************
         private string Wtc(string s)
@@ -133,7 +138,7 @@ namespace RenderPower
                         }
                     }
                 }
-                ret = ((m_AerenderPath != "") && (m_AepPath != "") && (m_BlockCount > 0) && (m_StartFrame >= 0) && (m_StartFrame <= m_LastFrame));
+                ret = ((m_AerenderPath != "") && (m_AepPath != "") && (m_BlockCount > 0) && (m_StartFrame >= 0) && (m_StartFrame <= m_EndFrame));
             }
             catch
             {

@@ -19,14 +19,14 @@ namespace RenderPower
 {
     public partial class Form1 : Form
     {
-        private string m_WatchFolder = "";
+        private RenderWatcher m_RenderWatcher = new RenderWatcher();
         public string WatchFolder
         {
-            get { return m_WatchFolder; }
+            get { return m_RenderWatcher.WatchFolder; }
 
             set
             {
-                m_WatchFolder = value;
+                m_RenderWatcher.WatchFolder = value;
                 ChkWatchFolder();
             }
         }
@@ -56,6 +56,7 @@ namespace RenderPower
             InitializeComponent();
 
             CbIsStartup.CheckedChanged += CbStartAndStart_CheckedChanged;
+            m_WatchFolder
         }
         //-------------------------------------------------------------
         private void CbStartAndStart_CheckedChanged(object sender, EventArgs e)

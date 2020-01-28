@@ -21,11 +21,18 @@ namespace RenderPower
             Changed?.Invoke(this, e);
         }
         // ******************************************************************
-        public delegate void ListupEventHandler(object sender, EventArgs e);
-        public event ListupEventHandler Listuped;
-        protected virtual void OnListuped(EventArgs e)
+        public delegate void RifListupEventHandler(object sender, EventArgs e);
+        public event RifListupEventHandler RifListuped;
+        protected virtual void OnRifListuped(EventArgs e)
         {
-            Listuped?.Invoke(this, e);
+            RifListuped?.Invoke(this, e);
+        }
+        // ******************************************************************
+        public delegate void WatchStartEventHandler(object sender, EventArgs e);
+        public event WatchStartEventHandler Watchsterted;
+        protected virtual void OnWatchsterted(EventArgs e)
+        {
+            Watchsterted?.Invoke(this, e);
         }
         // ******************************************************************
         private bool m_IsWatching = false;
@@ -33,46 +40,65 @@ namespace RenderPower
         // ******************************************************************
 
         private FileSystemWatcher m_watch = null;
-        private string m_TargetPath = "";
-        private string m_TargetFilter = "";
+        private string m_WatchFolder = "";
+        private string m_WatchFilter = "";
 
         // ******************************************************************
-        private string[] m_ListFiles = new string[0];
-        public string[] ListFiles
+        private List<FileInfo> m_RifFiles = new List<FileInfo>();
+        public string[] RifFiles
         {
-            get { return m_ListFiles; }
+            get {
+                string [] ret = new string[m_RifFiles.Count];
+                for (int i=0; i<ret.Length;i++)
+                {
+                    ret[i] = m_RifFiles[i].FullName;
+                }
+                return ret;
+            }
         }
 
         // ******************************************************************
-        public string TargetFolder
+        public string WatchFolder
         {
-            get { return m_TargetPath; }
-            set { m_TargetPath = value; }
+            get { return m_WatchFolder; }
+            set
+            {
+                if (m_IsWatching == false)
+                {
+                    m_WatchFolder = value;
+                }
+            }
         }
         // ******************************************************************
-        public string TargetFilter
+        public string WatchFilter
         {
-            get { return m_TargetFilter; }
-            set { m_TargetFilter = value; }
+            get { return m_WatchFilter; }
+            set
+            {
+                if (m_IsWatching == false)
+                {
+                    m_WatchFilter = value;
+                }
+            }
         }
         // ******************************************************************
         public RenderWatcher()
         {
-            if (m_TargetFilter == "") m_TargetFilter = "*.rif";
+            if (m_WatchFilter == "") m_WatchFilter = "*" + RenderInfoFile.RifExt;
 
         }
         // ******************************************************************
         public void StartWatch(Form form)
         {
             if (m_watch != null) return;
-            m_ListFiles = ListupFiles(m_TargetPath);
-            OnListuped(new EventArgs());
+            m_RifFiles = RifListupFiles(m_WatchFolder);
+            OnRifListuped(new EventArgs());
 
             m_watch = new FileSystemWatcher
             {
                 NotifyFilter = NotifyFilters.FileName | NotifyFilters.LastWrite | NotifyFilters.LastAccess,
-                Filter = m_TargetFilter,
-                Path = m_TargetPath
+                Filter = m_WatchFilter,
+                Path = m_WatchFolder
 
             };
 
@@ -84,13 +110,38 @@ namespace RenderPower
             m_watch.SynchronizingObject = form;
             m_watch.EnableRaisingEvents = true;
             m_IsWatching = true;
+            OnWatchsterted(new EventArgs());
         }
         // ******************************************************************
         private void ListUpdate(object sender, FileSystemEventArgs e)
         {
             OnChanged(e);
-            m_ListFiles = ListupFiles(m_TargetPath);
-            OnListuped(new EventArgs());
+            List<FileInfo> lst = RifListupFiles(m_WatchFolder);
+            bool igg = true;
+            int cnt = lst.Count;
+            if (m_RifFiles.Count ==cnt)
+            {
+                igg = false;
+                for ( int i=0; i<cnt;i++)
+                {
+                    if (m_RifFiles[i].FullName != lst[i].FullName)
+                    {
+                        igg = true;
+                        break;
+                    }
+                    else if (m_RifFiles[i].LastWriteTime != lst[i].LastWriteTime)
+                    {
+                        igg = true;
+                        break;
+                    }
+                }
+            }
+            if (igg==true)
+            {
+                m_RifFiles.Clear();
+                m_RifFiles = lst.ToList<FileInfo>();
+                OnRifListuped(new EventArgs());
+            }
         }
         // ******************************************************************
         public void StopWatch()
@@ -104,12 +155,18 @@ namespace RenderPower
             }
         }
         // ******************************************************************
-        private string[] ListupFiles(string p)
+        private List<FileInfo> RifListupFiles(string p)
         {
-            string[] ret = new string[0];
+            List<FileInfo> ret = new List<FileInfo>();
             if (Directory.Exists(p) == false) return ret;
-
-            ret = Directory.GetFiles(p, m_TargetFilter);
+            string []  lst = Directory.GetFiles(p, m_WatchFilter).OrderBy(f => File.GetLastWriteTime(f)).ToArray<string>();
+            if( lst.Length>0)
+            {
+                foreach(string s in lst)
+                {
+                    ret.Add(new FileInfo(s));
+                }
+            }
             return ret;
         }
     }

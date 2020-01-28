@@ -18,7 +18,7 @@ namespace RenderPower
     public class RenderInfoListItem
     {
         public int Start = 0;
-        public int Last = 0;
+        public int End = 0;
         public string PCName = "";
         public int Index = 0;
         public RISTATUS Status = RISTATUS.WAIT;
@@ -30,14 +30,14 @@ namespace RenderPower
         public void Init()
         {
             Start = 0;
-            Last = 0;
+            End = 0;
             PCName = "";
             Index = 0;
             Status = RISTATUS.WAIT;
         }
         public string ToStr()
         {
-            return String.Format("{0},{1},{2},{3},{4}", Start, Last, PCName, Index,Status);
+            return String.Format("{0},{1},{2},{3},{4}", Start, End, PCName, Index,Status);
         }
         public bool FromStr(string s)
         {
@@ -57,7 +57,7 @@ namespace RenderPower
             }
             if (int.TryParse(sa[1], out v))
             {
-                Last = v;
+                End = v;
             }
             else
             {
@@ -110,7 +110,7 @@ namespace RenderPower
                     RenderInfoListItem ri = new RenderInfoListItem
                     {
                         Start = s + i * bc,
-                        Last = s + (i + 1) * bc - 1
+                        End = s + (i + 1) * bc - 1
                     };
                     Items.Add(ri);
                 }
@@ -120,7 +120,7 @@ namespace RenderPower
                 RenderInfoListItem ri = new RenderInfoListItem
                 {
                     Start = s + c * bc,
-                    Last = l
+                    End = l
                 };
                 Items.Add(ri);
             }
